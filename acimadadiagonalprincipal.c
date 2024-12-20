@@ -1,36 +1,40 @@
 #include <stdio.h>
-#define TAM_MTZ 3
- 
+#include <math.h>
+
+#define TAM_MTZ 12
+
 int main() {
- 
-    int matriz [TAM_MTZ] [TAM_MTZ], i, j;
+    double matriz[TAM_MTZ][TAM_MTZ]; 
+    int i, j;
     char operacao;
-    float n, soma = 0, media, divisor = 0;
+    double soma = 0, media = 0, divisor = 0;
+
     operacao = getchar();
 
-    for (i=0; i<TAM_MTZ; i++) {
-
-        for (j=0; j<TAM_MTZ; j++){
-            scanf("%f", &n);
-            matriz[i][j] = n;
+    
+    for (i = 0; i < TAM_MTZ; i++) {
+        for (j = 0; j < TAM_MTZ; j++) {
+            scanf("%lf", &matriz[i][j]);
         }
     }
-            for (i =0; i<TAM_MTZ; i++) {
-            for (j=0; j<TAM_MTZ; j++) {
-                if (i < j) {
-                   
-                   soma += matriz[i][j];
-                   divisor +=1;
-                }
+
+   
+    for (i = 0; i < TAM_MTZ; i++) {
+        for (j = 0; j < TAM_MTZ; j++) {
+            if (i < j) {  
+                soma += matriz[i][j];
+                divisor++;
             }
-        } 
-        media = soma / divisor;
-    if (operacao == 'S') {
-        printf("%.1f\n", soma);
-    } else if (operacao == 'M') {
-        printf("%.1f\n", media);
+        }
     }
 
- 
+
+    if (operacao == 'S') {
+        printf("%.1lf\n", soma + 1e-9);
+    } else if (operacao == 'M') {
+        media = soma / divisor;
+        printf("%.1lf\n", media + 1e-9);
+    }
+
     return 0;
 }
